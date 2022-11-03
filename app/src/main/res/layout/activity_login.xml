@@ -2,10 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/btnSignIn"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".activities.LoginActivity">
 
     <ImageView
         android:id="@+id/ivLogin"
@@ -24,6 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
+        android:padding="5dp"
         android:alpha="0.8"
         android:background="@drawable/layout_bg"
         android:orientation="vertical"
@@ -38,7 +38,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp">
+            android:layout_margin="5dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etLogin"
@@ -52,7 +52,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="8dp">
+            android:layout_margin="5dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etPass"
@@ -64,20 +64,21 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btnSignIn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:textSize="15sp"
-            android:textStyle="bold"
             android:background="@drawable/btn_bg"
-            android:text="@string/sign_in" />
+            android:onClick="onClickSignUp"
+            android:text="@string/sign_in"
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvReg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
+            android:layout_marginBottom="10dp"
             android:layout_marginTop="5dp"
             android:text="@string/sign_up"
             android:textSize="15sp"
