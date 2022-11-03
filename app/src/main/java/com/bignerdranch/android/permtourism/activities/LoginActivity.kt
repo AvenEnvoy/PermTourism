@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.FragmentTransaction
 import com.bignerdranch.android.permtourism.R
 import com.bignerdranch.android.permtourism.databinding.ActivityLoginBinding
 import com.bignerdranch.android.permtourism.fragments.RegFragment
@@ -15,7 +16,11 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.tvReg.setOnClickListener() {
-            supportFragmentManager.beginTransaction().replace(R.id.flReg, RegFragment.newInstance()).commit()
+            supportFragmentManager
+                .beginTransaction()
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .replace(R.id.flReg, RegFragment.newInstance())
+                .commit()
         }
     }
 
