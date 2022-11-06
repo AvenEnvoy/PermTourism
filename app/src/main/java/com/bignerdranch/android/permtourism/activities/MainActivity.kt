@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         binding.apply {
             rvMain.layoutManager = LinearLayoutManager(this@MainActivity)
             rvMain.adapter = adapter
-            for (i in 0.. 3) {
+            for (i in 0.. 4) {
                 val place = Place(
                     Arrays().imageId[i],
                     Arrays().title[i],
