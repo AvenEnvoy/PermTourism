@@ -9,7 +9,7 @@ import com.bignerdranch.android.permtourism.databinding.PlaceItemBinding
 import com.bignerdranch.android.permtourism.model.Place
 
 class PlaceAdapter: RecyclerView.Adapter<PlaceAdapter.PlaceHolder>() {
-    val placeList = ArrayList<Place>()
+    private val placeList = ArrayList<Place>()
     class PlaceHolder(item: View): RecyclerView.ViewHolder(item) {
         val binding = PlaceItemBinding.bind(item)
         fun bind(place: Place) {
