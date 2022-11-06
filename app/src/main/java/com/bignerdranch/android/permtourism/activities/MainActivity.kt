@@ -2,10 +2,7 @@ package com.bignerdranch.android.permtourism.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bignerdranch.android.permtourism.R
 import com.bignerdranch.android.permtourism.adapters.PlaceAdapter
 import com.bignerdranch.android.permtourism.databinding.ActivityMainBinding
 import com.bignerdranch.android.permtourism.model.Arrays
@@ -26,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         binding.apply {
             rvMain.layoutManager = LinearLayoutManager(this@MainActivity)
             rvMain.adapter = adapter
-            for (i in 0.. 2) {
+            for (i in 0.. 3) {
                 val place = Place(
                     Arrays().imageId[i],
                     Arrays().title[i],

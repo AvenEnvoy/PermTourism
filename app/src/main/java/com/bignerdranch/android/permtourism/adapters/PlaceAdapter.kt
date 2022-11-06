@@ -11,7 +11,7 @@ import com.bignerdranch.android.permtourism.model.Place
 class PlaceAdapter: RecyclerView.Adapter<PlaceAdapter.PlaceHolder>() {
     private val placeList = ArrayList<Place>()
     class PlaceHolder(item: View): RecyclerView.ViewHolder(item) {
-        val binding = PlaceItemBinding.bind(item)
+        private val binding = PlaceItemBinding.bind(item)
         fun bind(place: Place) {
             binding.apply {
                 ivPlace.setImageResource(place.imageId)
@@ -36,6 +36,5 @@ class PlaceAdapter: RecyclerView.Adapter<PlaceAdapter.PlaceHolder>() {
 
     fun addPlace(place: Place) {
         placeList.add(place)
-        notifyDataSetChanged()
     }
 }
