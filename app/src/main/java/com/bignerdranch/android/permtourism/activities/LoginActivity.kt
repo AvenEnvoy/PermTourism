@@ -25,8 +25,11 @@ class LoginActivity : AppCompatActivity() {
                 .replace(R.id.flReg, RegFragment.newInstance())
                 .commit()
         }
+        // добавление аккаунта администратора
+        val db = UserDB.getDB(this)
+        val user = User(null, "Admin", "admin@gmail.com", "admin", "admin")
+        db.getDao().addUser(user)
     }
-
 
     fun onClickSignIp(view: View) {
         val intent = Intent(this, MainActivity::class.java)
