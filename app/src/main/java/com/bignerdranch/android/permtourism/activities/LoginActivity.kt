@@ -7,6 +7,9 @@ import android.view.View
 import androidx.fragment.app.FragmentTransaction
 import com.bignerdranch.android.permtourism.R
 import com.bignerdranch.android.permtourism.databinding.ActivityLoginBinding
+import com.bignerdranch.android.permtourism.db.User
+import com.bignerdranch.android.permtourism.db.UserDB
+import com.bignerdranch.android.permtourism.db.UserDao
 import com.bignerdranch.android.permtourism.fragments.RegFragment
 
 class LoginActivity : AppCompatActivity() {
@@ -23,6 +26,7 @@ class LoginActivity : AppCompatActivity() {
                 .commit()
         }
     }
+
 
     fun onClickSignIp(view: View) {
         val intent = Intent(this, MainActivity::class.java)
