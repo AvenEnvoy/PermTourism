@@ -9,10 +9,10 @@ import com.bignerdranch.android.permtourism.R
 import com.bignerdranch.android.permtourism.databinding.ActivityLoginBinding
 import com.bignerdranch.android.permtourism.db.User
 import com.bignerdranch.android.permtourism.db.UserDB
-import com.bignerdranch.android.permtourism.db.UserDao
 import com.bignerdranch.android.permtourism.fragments.RegFragment
+import com.bignerdranch.android.permtourism.fragments.RegInterface
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity(), RegInterface {
     private lateinit var binding: ActivityLoginBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,10 +25,13 @@ class LoginActivity : AppCompatActivity() {
                 .replace(R.id.flReg, RegFragment.newInstance())
                 .commit()
         }
-        // добавление аккаунта администратора
+    }
+
+    override fun dataPass(data: User) {
         val db = UserDB.getDB(this)
-        val user = User(null, "Admin", "admin@gmail.com", "admin", "admin")
-        db.getDao().addUser(user)
+        Thread {
+            db.getDao().addUser(data)
+        }.start()
     }
 
     fun onClickSignIp(view: View) {

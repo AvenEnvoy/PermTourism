@@ -1,5 +1,6 @@
 package com.bignerdranch.android.permtourism.fragments
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,11 +10,10 @@ import android.widget.EditText
 import com.bignerdranch.android.permtourism.R
 import com.bignerdranch.android.permtourism.databinding.FragmentRegBinding
 import com.bignerdranch.android.permtourism.db.User
-import com.bignerdranch.android.permtourism.db.UserDB
 
 class RegFragment : Fragment() {
     private lateinit var binding: FragmentRegBinding
-    private val db = activity?.let { UserDB.getDB(it.applicationContext) }
+    private lateinit var dataPasser: RegInterface
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View {
@@ -25,6 +25,11 @@ class RegFragment : Fragment() {
     companion object {
         @JvmStatic
         fun newInstance() = RegFragment()
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        dataPasser = context as RegInterface
     }
 
     override fun onStart() {
@@ -40,9 +45,7 @@ class RegFragment : Fragment() {
                 binding.etRegName.text.toString(),
                 binding.etRegLogin.text.toString(),
                 binding.etRegPass.text.toString())
-            Thread {
-                db?.getDao()?.addUser(user)
-            }.start()
+            dataPasser.dataPass(user)
         }
     }
 
