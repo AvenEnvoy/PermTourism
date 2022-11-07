@@ -3,5 +3,5 @@ package com.bignerdranch.android.permtourism.fragments
 import com.bignerdranch.android.permtourism.db.User
 
 interface RegInterface {
-    fun dataPass(data: User)
+    fun dataPass(data: User, login: String, pass: String)
 }

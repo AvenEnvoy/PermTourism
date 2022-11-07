@@ -27,7 +27,9 @@ class LoginActivity : AppCompatActivity(), RegInterface {
         }
     }
 
-    override fun dataPass(data: User) {
+    override fun dataPass(data: User, login: String, pass: String) {
+        binding.etLogin.setText(login)
+        binding.etPass.setText(pass)
         val db = UserDB.getDB(this)
         Thread {
             db.getDao().addUser(data)
