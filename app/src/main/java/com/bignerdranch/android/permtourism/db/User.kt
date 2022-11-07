@@ -9,11 +9,11 @@ data class User(
     @PrimaryKey(autoGenerate = true)
     var id: Int? = null,
     @ColumnInfo(name = "Name")
-    var name: String,
+    var name: String?,
     @ColumnInfo(name = "Email")
-    var email: String,
+    var email: String?,
     @ColumnInfo(name = "Login")
-    var login: String,
-    @ColumnInfo(name = "password")
-    var pass: String
+    var login: String?,
+    @ColumnInfo(name = "Password")
+    var pass: String?
 )

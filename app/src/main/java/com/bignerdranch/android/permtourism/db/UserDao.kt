@@ -11,4 +11,6 @@ interface UserDao {
     fun addUser (user: User)
     @Query("SELECT * FROM Users")
     fun getAllUsers(): Flow<List<User>>
+    @Query("SELECT Name FROM Users WHERE Login LIKE :login AND Password LIKE :pass")
+    fun searchUser(login: String, pass: String): String
 }

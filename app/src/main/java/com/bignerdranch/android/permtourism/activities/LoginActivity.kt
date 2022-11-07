@@ -3,7 +3,6 @@ package com.bignerdranch.android.permtourism.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import androidx.fragment.app.FragmentTransaction
 import com.bignerdranch.android.permtourism.R
 import com.bignerdranch.android.permtourism.databinding.ActivityLoginBinding
@@ -14,6 +13,7 @@ import com.bignerdranch.android.permtourism.fragments.RegInterface
 
 class LoginActivity : AppCompatActivity(), RegInterface {
     private lateinit var binding: ActivityLoginBinding
+    private val db = UserDB.getDB(this)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
@@ -30,15 +30,13 @@ class LoginActivity : AppCompatActivity(), RegInterface {
     override fun dataPass(data: User, login: String, pass: String) {
         binding.etLogin.setText(login)
         binding.etPass.setText(pass)
-        val db = UserDB.getDB(this)
         Thread {
             db.getDao().addUser(data)
         }.start()
     }
 
-    fun onClickSignIp(view: View) {
+    fun onClickSignIn() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }
-
 }
