@@ -13,7 +13,6 @@ import com.bignerdranch.android.permtourism.fragments.RegInterface
 
 class LoginActivity : AppCompatActivity(), RegInterface {
     private lateinit var binding: ActivityLoginBinding
-    private val db = UserDB.getDB(this)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
@@ -30,6 +29,7 @@ class LoginActivity : AppCompatActivity(), RegInterface {
     override fun dataPass(data: User, login: String, pass: String) {
         binding.etLogin.setText(login)
         binding.etPass.setText(pass)
+        val db = UserDB.getDB(this)
         Thread {
             db.getDao().addUser(data)
         }.start()
