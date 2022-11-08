@@ -71,7 +71,8 @@
             android:background="@drawable/btn_bg"
             android:onClick="onClickSignIn"
             android:text="@string/sign_in"
-            android:textSize="15sp"
+            android:fontFamily="@font/bookerly"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <TextView
@@ -83,7 +84,8 @@
             android:gravity="center"
             android:minHeight="40dp"
             android:text="@string/sign_up"
-            android:textSize="15sp"
+            android:fontFamily="@font/bookerly"
+            android:textSize="16sp"
             android:textStyle="bold"
             tools:ignore="TouchTargetSizeCheck" />
 

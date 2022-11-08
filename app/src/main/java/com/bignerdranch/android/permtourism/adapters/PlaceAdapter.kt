@@ -1,5 +1,6 @@
 package com.bignerdranch.android.permtourism.adapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,16 +9,17 @@ import com.bignerdranch.android.permtourism.R
 import com.bignerdranch.android.permtourism.databinding.PlaceItemBinding
 import com.bignerdranch.android.permtourism.model.Place
 
-class PlaceAdapter(val listener: PlaceOnClickListener): RecyclerView.Adapter<PlaceAdapter.PlaceHolder>() {
+class PlaceAdapter(private val listener: PlaceOnClickListener): RecyclerView.Adapter<PlaceAdapter.PlaceHolder>() {
     private val placeList = ArrayList<Place>()
     class PlaceHolder(item: View): RecyclerView.ViewHolder(item) {
         private val binding = PlaceItemBinding.bind(item)
+        @SuppressLint("SetTextI18n")
         fun bind(place: Place, listener: PlaceOnClickListener) {
             binding.apply {
                 ivPlace.setImageResource(place.imageId)
                 tvTitle.text = place.title
-                tvDesc.text = place.description
-                itemView.setOnClickListener() {
+                tvDesc.text = "     ${place.description}"
+                itemView.setOnClickListener {
                     listener.onClick(place)
                 }
             }

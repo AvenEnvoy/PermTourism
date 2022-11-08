@@ -28,7 +28,7 @@
                 android:id="@+id/ivPlace"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1.7"
+                android:layout_weight="1.8"
                 android:scaleType="centerCrop"
                 app:srcCompat="@drawable/kungur" />
 
@@ -45,6 +45,7 @@
                     android:background="@color/main_color2"
                     android:gravity="center"
                     android:padding="5dp"
+                    android:fontFamily="@font/bookerly"
                     android:text=""
                     android:textColor="@color/white"
                     android:textSize="18sp"
@@ -58,6 +59,7 @@
                     android:gravity="fill_horizontal"
                     android:maxLines="4"
                     android:padding="8dp"
+                    android:fontFamily="@font/bookerly"
                     android:text=""
                     android:textColor="@color/main_color1"
                     android:textSize="16sp" />

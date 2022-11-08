@@ -74,8 +74,9 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:background="@drawable/btn_bg"
+            android:fontFamily="@font/bookerly"
             android:text="Registration"
-            android:textSize="15sp"
+            android:textSize="16sp"
             android:textStyle="bold"/>
 
     </LinearLayout>
