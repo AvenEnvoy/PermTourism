@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity(), PlaceOnClickListener {
         val intent = Intent(this, InfoActivity::class.java)
         intent.putExtra("image", place.imageId)
         intent.putExtra("title", place.title)
-        intent.putExtra("desc", "      ${place.description}")
+        intent.putExtra("desc", place.description)
         startActivity(intent)
     }
 }

@@ -13,12 +13,11 @@ class PlaceAdapter(private val listener: PlaceOnClickListener): RecyclerView.Ada
     private val placeList = ArrayList<Place>()
     class PlaceHolder(item: View): RecyclerView.ViewHolder(item) {
         private val binding = PlaceItemBinding.bind(item)
-        @SuppressLint("SetTextI18n")
         fun bind(place: Place, listener: PlaceOnClickListener) {
             binding.apply {
                 ivPlace.setImageResource(place.imageId)
                 tvTitle.text = place.title
-                tvDesc.text = "     ${place.description}"
+                tvDesc.text = place.description
                 itemView.setOnClickListener {
                     listener.onClick(place)
                 }
