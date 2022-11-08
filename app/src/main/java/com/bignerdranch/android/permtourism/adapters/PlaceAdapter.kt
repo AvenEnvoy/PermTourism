@@ -8,15 +8,18 @@ import com.bignerdranch.android.permtourism.R
 import com.bignerdranch.android.permtourism.databinding.PlaceItemBinding
 import com.bignerdranch.android.permtourism.model.Place
 
-class PlaceAdapter: RecyclerView.Adapter<PlaceAdapter.PlaceHolder>() {
+class PlaceAdapter(val listener: PlaceOnClickListener): RecyclerView.Adapter<PlaceAdapter.PlaceHolder>() {
     private val placeList = ArrayList<Place>()
     class PlaceHolder(item: View): RecyclerView.ViewHolder(item) {
         private val binding = PlaceItemBinding.bind(item)
-        fun bind(place: Place) {
+        fun bind(place: Place, listener: PlaceOnClickListener) {
             binding.apply {
                 ivPlace.setImageResource(place.imageId)
                 tvTitle.text = place.title
                 tvDesc.text = place.description
+                itemView.setOnClickListener() {
+                    listener.onClick(place)
+                }
             }
         }
     }
@@ -27,7 +30,7 @@ class PlaceAdapter: RecyclerView.Adapter<PlaceAdapter.PlaceHolder>() {
     }
 
     override fun onBindViewHolder(holder: PlaceHolder, position: Int) {
-        holder.bind(placeList[position])
+        holder.bind(placeList[position], listener)
     }
 
     override fun getItemCount(): Int {

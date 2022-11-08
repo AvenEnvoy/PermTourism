@@ -1,16 +1,18 @@
 package com.bignerdranch.android.permtourism.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bignerdranch.android.permtourism.adapters.PlaceAdapter
+import com.bignerdranch.android.permtourism.adapters.PlaceOnClickListener
 import com.bignerdranch.android.permtourism.databinding.ActivityMainBinding
 import com.bignerdranch.android.permtourism.model.Arrays
 import com.bignerdranch.android.permtourism.model.Place
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), PlaceOnClickListener {
     private lateinit var binding: ActivityMainBinding
-    private val adapter = PlaceAdapter()
+    private val adapter = PlaceAdapter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,5 +37,10 @@ class MainActivity : AppCompatActivity() {
                 adapter.addPlace(place)
             }
         }
+    }
+
+    override fun onClick(place: Place) {
+        val intent = Intent(this, InfoActivity::class.java)
+        startActivity(intent)
     }
 }
