@@ -1,16 +1,18 @@
 package com.bignerdranch.android.permtourism.db
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface UserDao {
     @Insert
-    fun addUser (user: User)
-    @Query("SELECT * FROM Users")
-    fun getAllUsers(): Flow<List<User>>
-    @Query("SELECT Name FROM Users WHERE Login LIKE :login AND Password LIKE :pass")
-    fun searchUser(login: String, pass: String): String
+    suspend fun addUser (user: User)
+
+    @Query("SELECT * FROM Users ORDER BY id DESC")
+    fun getAllUsers(): LiveData<List<User>>
+
+    @Query("SELECT * FROM Users WHERE login LIKE :login")
+    suspend fun getUser(login: String): User?
 }
