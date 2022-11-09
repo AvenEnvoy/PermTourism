@@ -19,7 +19,7 @@ class LoginActivity : AppCompatActivity(), RegInterface {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.tvReg.setOnClickListener() {
+        binding.tvReg.setOnClickListener {
             supportFragmentManager
                 .beginTransaction()
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
@@ -33,12 +33,19 @@ class LoginActivity : AppCompatActivity(), RegInterface {
         binding.etPass.setText(pass)
         val db = DataBase.getDB(this)
         CoroutineScope(Dispatchers.IO).launch{
-            db.getDao().addUser(data)
+            if (db.getDao().getUser(login) == null) db.getDao().addUser(data)
         }
     }
 
     fun onClickSignIn(view: View) {
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
+        val db = DataBase.getDB(this)
+        CoroutineScope(Dispatchers.IO).launch{
+            val user = db.getDao().getUser(binding.etLogin.text.toString())
+            val pass = user?.pass
+            if (user != null && pass == binding.etPass.text.toString()) {
+                val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                startActivity(intent)
+            }
+        }
     }
 }
