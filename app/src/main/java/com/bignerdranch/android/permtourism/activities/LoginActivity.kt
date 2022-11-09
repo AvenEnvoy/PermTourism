@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.FragmentTransaction
 import com.bignerdranch.android.permtourism.R
 import com.bignerdranch.android.permtourism.databinding.ActivityLoginBinding
@@ -32,20 +33,22 @@ class LoginActivity : AppCompatActivity(), RegInterface {
         binding.etLogin.setText(login)
         binding.etPass.setText(pass)
         val db = DataBase.getDB(this)
-        CoroutineScope(Dispatchers.IO).launch{
-            if (db.getDao().getUser(login) == null) db.getDao().addUser(data)
+        CoroutineScope(Dispatchers.Main).launch{
+            if (db.getDao().getUser(login) == null) {
+                db.getDao().addUser(data)
+            } else Toast.makeText(this@LoginActivity, "login is already in use", Toast.LENGTH_SHORT).show()
         }
     }
 
     fun onClickSignIn(view: View) {
         val db = DataBase.getDB(this)
-        CoroutineScope(Dispatchers.IO).launch{
+        CoroutineScope(Dispatchers.Main).launch{
             val user = db.getDao().getUser(binding.etLogin.text.toString())
             val pass = user?.pass
             if (user != null && pass == binding.etPass.text.toString()) {
                 val intent = Intent(this@LoginActivity, MainActivity::class.java)
                 startActivity(intent)
-            }
+            } else Toast.makeText(this@LoginActivity, "unknown account", Toast.LENGTH_SHORT).show()
         }
     }
 }
