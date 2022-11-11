@@ -1,13 +1,12 @@
 package com.bignerdranch.android.permtourism.adapters
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bignerdranch.android.permtourism.R
 import com.bignerdranch.android.permtourism.databinding.PlaceItemBinding
-import com.bignerdranch.android.permtourism.model.Place
+import com.bignerdranch.android.permtourism.db.Place
 
 class PlaceAdapter(private val listener: PlaceOnClickListener): RecyclerView.Adapter<PlaceAdapter.PlaceHolder>() {
     private val placeList = ArrayList<Place>()
@@ -15,7 +14,7 @@ class PlaceAdapter(private val listener: PlaceOnClickListener): RecyclerView.Ada
         private val binding = PlaceItemBinding.bind(item)
         fun bind(place: Place, listener: PlaceOnClickListener) {
             binding.apply {
-                ivPlace.setImageResource(place.imageId)
+                ivPlace.setImageResource(place.image)
                 tvTitle.text = place.title
                 tvDesc.text = place.description
                 itemView.setOnClickListener {

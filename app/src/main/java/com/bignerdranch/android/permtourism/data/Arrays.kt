@@ -1,4 +1,4 @@
-package com.bignerdranch.android.permtourism.model
+package com.bignerdranch.android.permtourism.data
 
 import com.bignerdranch.android.permtourism.R
 
@@ -70,13 +70,21 @@ class Arrays() {
         57.47431704108382,
         56.88671178341212,
         57.086711790624044)
-    val favorites = arrayOf(
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false)
+    val address = arrayOf(
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",)
+    val schedule = arrayOf(
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",)
 }
 

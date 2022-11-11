@@ -5,12 +5,12 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database (entities = [User::class], version = 1, exportSchema = false)
+@Database (entities = [User::class, Place::class], version = 2, exportSchema = false)
 abstract class DataBase: RoomDatabase() {
-    abstract fun getDao(): UserDao
+    abstract fun getDao(): Dao
     companion object {
         fun getDB(context: Context): DataBase {
-            return Room.databaseBuilder(context.applicationContext, DataBase::class.java, "UserDB")
+            return Room.databaseBuilder(context.applicationContext, DataBase::class.java, "DataBase")
                 .fallbackToDestructiveMigration()
                 .build()
         }

@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bignerdranch.android.permtourism.adapters.PlaceAdapter
 import com.bignerdranch.android.permtourism.adapters.PlaceOnClickListener
 import com.bignerdranch.android.permtourism.databinding.ActivityMainBinding
-import com.bignerdranch.android.permtourism.model.Arrays
-import com.bignerdranch.android.permtourism.model.Place
+import com.bignerdranch.android.permtourism.data.Arrays
+import com.bignerdranch.android.permtourism.db.Place
 
 class MainActivity : AppCompatActivity(), PlaceOnClickListener {
     private lateinit var binding: ActivityMainBinding
@@ -27,12 +27,14 @@ class MainActivity : AppCompatActivity(), PlaceOnClickListener {
             rvMain.adapter = adapter
             for (i in 0.. 6) {
                 val place = Place(
+                    null,
                     Arrays().imageId[i],
                     Arrays().title[i],
                     Arrays().description[i],
                     Arrays().latitude[i],
                     Arrays().longitude[i],
-                    Arrays().favorites[i]
+                    Arrays().address[i],
+                    Arrays().schedule[i]
                 )
                 adapter.addPlace(place)
             }
@@ -41,7 +43,7 @@ class MainActivity : AppCompatActivity(), PlaceOnClickListener {
 
     override fun onClick(place: Place) {
         val intent = Intent(this, InfoActivity::class.java)
-        intent.putExtra("image", place.imageId)
+        intent.putExtra("image", place.image)
         intent.putExtra("title", place.title)
         intent.putExtra("desc", place.description)
         startActivity(intent)
