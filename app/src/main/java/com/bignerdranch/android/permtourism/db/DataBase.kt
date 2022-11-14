@@ -11,6 +11,7 @@ abstract class DataBase: RoomDatabase() {
     companion object {
         fun getDB(context: Context): DataBase {
             return Room.databaseBuilder(context.applicationContext, DataBase::class.java, "DataBase")
+                .createFromAsset("database/db.db")
                 .fallbackToDestructiveMigration()
                 .build()
         }
