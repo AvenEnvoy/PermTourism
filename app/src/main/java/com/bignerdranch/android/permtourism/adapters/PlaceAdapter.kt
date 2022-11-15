@@ -1,5 +1,7 @@
 package com.bignerdranch.android.permtourism.adapters
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +16,8 @@ class PlaceAdapter(private val listener: PlaceOnClickListener): RecyclerView.Ada
         private val binding = PlaceItemBinding.bind(item)
         fun bind(place: Place, listener: PlaceOnClickListener) {
             binding.apply {
-                ivPlace.setImageResource(place.image)
+                val bmp = BitmapFactory.decodeByteArray(place.image, 0, place.image.size)
+                ivPlace.setImageBitmap(bmp)
                 tvTitle.text = place.title
                 tvDesc.text = place.description
                 itemView.setOnClickListener {

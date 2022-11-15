@@ -8,8 +8,8 @@ import androidx.room.PrimaryKey
 data class Place(
     @PrimaryKey(autoGenerate = true)
     var id: Int? = null,
-    @ColumnInfo(name = "Image")
-    val image : Int,
+    @ColumnInfo(name = "Image", typeAffinity = ColumnInfo.BLOB)
+    val image : ByteArray,
     @ColumnInfo(name = "Title")
     val title : String,
     @ColumnInfo(name = "Description")

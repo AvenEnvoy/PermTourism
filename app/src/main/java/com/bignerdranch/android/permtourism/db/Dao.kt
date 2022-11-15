@@ -13,9 +13,6 @@ interface Dao {
     @Insert
     suspend fun addPlace (place: Place)
 
-    @Query("SELECT * FROM Users ORDER BY id DESC")
-    fun getAllUsers(): LiveData<List<User>>
-
     @Query("SELECT * FROM Places ORDER BY id DESC")
     fun getAllPlaces(): LiveData<List<Place>>
 

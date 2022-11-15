@@ -1,14 +1,24 @@
 package com.bignerdranch.android.permtourism.activities
 
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.annotation.Nullable
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bignerdranch.android.permtourism.adapters.PlaceAdapter
 import com.bignerdranch.android.permtourism.adapters.PlaceOnClickListener
 import com.bignerdranch.android.permtourism.databinding.ActivityMainBinding
 import com.bignerdranch.android.permtourism.data.Arrays
+import com.bignerdranch.android.permtourism.db.DataBase
 import com.bignerdranch.android.permtourism.db.Place
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity(), PlaceOnClickListener {
     private lateinit var binding: ActivityMainBinding
@@ -25,19 +35,11 @@ class MainActivity : AppCompatActivity(), PlaceOnClickListener {
         binding.apply {
             rvMain.layoutManager = LinearLayoutManager(this@MainActivity)
             rvMain.adapter = adapter
-            for (i in 0.. 6) {
-                val place = Place(
-                    null,
-                    Arrays().imageId[i],
-                    Arrays().title[i],
-                    Arrays().description[i],
-                    Arrays().latitude[i],
-                    Arrays().longitude[i],
-                    Arrays().address[i],
-                    Arrays().schedule[i]
-                )
-                adapter.addPlace(place)
-            }
+            val db = DataBase.getDB(this@MainActivity)
+            val data : LiveData<List<Place>> = db.getDao().getAllPlaces()
+            data.observe(this@MainActivity, Observer {
+                for (i in it.indices) adapter.addPlace(it[i])
+                })
         }
     }
 
