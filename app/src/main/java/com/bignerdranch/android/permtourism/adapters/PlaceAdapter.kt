@@ -1,6 +1,5 @@
 package com.bignerdranch.android.permtourism.adapters
 
-import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View

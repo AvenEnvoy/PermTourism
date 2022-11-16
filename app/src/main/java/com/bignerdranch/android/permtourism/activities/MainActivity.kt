@@ -36,12 +36,13 @@ class MainActivity : AppCompatActivity(), PlaceOnClickListener {
             rvMain.layoutManager = LinearLayoutManager(this@MainActivity)
             rvMain.adapter = adapter
             val db = DataBase.getDB(this@MainActivity)
-            val data : LiveData<List<Place>> = db.getDao().getAllPlaces()
-            data.observe(this@MainActivity, Observer {
-                for (i in it.indices) adapter.addPlace(it[i])
-                })
+            CoroutineScope(Dispatchers.IO).launch {
+                val data: List<Place> = db.getDao().getAllPlaces()
+                for (i in data.indices) adapter.addPlace(data[i])
+            }
         }
     }
+
 
     override fun onClick(place: Place) {
         val intent = Intent(this, InfoActivity::class.java)

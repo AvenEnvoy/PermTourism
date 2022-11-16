@@ -14,7 +14,7 @@ interface Dao {
     suspend fun addPlace (place: Place)
 
     @Query("SELECT * FROM Places ORDER BY id DESC")
-    fun getAllPlaces(): LiveData<List<Place>>
+    fun getAllPlaces(): List<Place>
 
     @Query("SELECT * FROM Users WHERE login LIKE :login")
     suspend fun getUser(login: String): User?
