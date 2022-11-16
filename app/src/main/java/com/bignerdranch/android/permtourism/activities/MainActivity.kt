@@ -48,6 +48,10 @@ class MainActivity : AppCompatActivity(), PlaceOnClickListener {
         intent.putExtra("image", place.image)
         intent.putExtra("title", place.title)
         intent.putExtra("desc", place.description)
+        intent.putExtra("lat", place.latitude)
+        intent.putExtra("long", place.longitude)
+        intent.putExtra("address", place.address)
+        intent.putExtra("schedule", place.schedule)
         startActivity(intent)
     }
 }
