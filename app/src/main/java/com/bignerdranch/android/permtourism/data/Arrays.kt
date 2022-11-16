@@ -4,13 +4,13 @@ import com.bignerdranch.android.permtourism.R
 
 class Arrays() {
     val imageId = arrayOf(
-        R.drawable.kungur,
-        R.drawable.hohl,
-        R.drawable.palec,
-        R.drawable.gorod,
-        R.drawable.vodopad,
-        R.drawable.ordin,
-        R.drawable.vishersk)
+        byteArrayOf(0x48, 101, 108, 108, 111),
+        byteArrayOf(0x48, 101, 108, 108, 111),
+        byteArrayOf(0x48, 101, 108, 108, 111),
+        byteArrayOf(0x48, 101, 108, 108, 111),
+        byteArrayOf(0x48, 101, 108, 108, 111),
+        byteArrayOf(0x48, 101, 108, 108, 111),
+        byteArrayOf(0x48, 101, 108, 108, 111))
     val title = arrayOf(
         "Кунгурская пещера",
         "Хохловка",
@@ -63,7 +63,7 @@ class Arrays() {
         57.18213964587699,
         60.40037981135849,)
     val longitude = doubleArrayOf(
-        57.00587191043038,
+        57.440953609793006,
         56.26078480249001,
         56.79645161088171,
         57.63386012896059,
