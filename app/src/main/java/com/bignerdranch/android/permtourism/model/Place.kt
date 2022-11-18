@@ -1,11 +1,12 @@
-package com.bignerdranch.android.permtourism.db
+package com.bignerdranch.android.permtourism.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 @Entity (tableName = "Places")
-data class Place(
+class Place(
     @PrimaryKey(autoGenerate = true)
     var id: Int? = null,
     @ColumnInfo(name = "Image", typeAffinity = ColumnInfo.BLOB)
@@ -22,4 +23,4 @@ data class Place(
     val address : String,
     @ColumnInfo(name = "Schedule")
     val schedule : String
-)
+) : Serializable
