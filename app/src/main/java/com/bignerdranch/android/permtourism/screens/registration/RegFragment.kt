@@ -38,7 +38,7 @@ class RegFragment : Fragment() {
             val email = binding.etRegEmail.text.toString()
             val login = binding.etRegLogin.text.toString()
             val pass = binding.etRegPass.text.toString()
-            viewModel.addUser(User(name = name, email = email, login = login, pass = pass)){}
+            viewModel.addUser(User(name = name, email = email, login = login, pass = pass))
             APP.navController.navigate(R.id.action_regFragment_to_loginFragment)
         }
     }

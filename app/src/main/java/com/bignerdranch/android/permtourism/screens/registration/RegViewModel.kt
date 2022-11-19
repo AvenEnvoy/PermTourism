@@ -11,10 +11,9 @@ class RegViewModel(application: Application): AndroidViewModel(application) {
 
     var context = application
 
-    fun addUser(user: User, onSuccess:() -> Unit) =
+    fun addUser(user: User) {
         viewModelScope.launch(Dispatchers.IO) {
-            REPO.addUser(user) {
-                onSuccess()
+            REPO.addUser(user)
         }
     }
 }
