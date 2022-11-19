@@ -1,5 +1,6 @@
 package com.bignerdranch.android.permtourism.screens.detail
 
+import android.graphics.BitmapFactory
 import android.os.Binder
 import android.os.Build
 import android.os.Bundle
@@ -33,6 +34,16 @@ class DetailFragment : Fragment() {
     }
 
     private fun init() {
-
+        val lati = currentPlace.latitude
+        val long = currentPlace.longitude
+        binding.apply {
+            val bmp = BitmapFactory.decodeByteArray(currentPlace.image, 0, currentPlace.image.size)
+            ivPlace.setImageBitmap(bmp)
+            tvTitle.text = currentPlace.title
+            tvDesc.text = currentPlace.description
+            tvAddress.text = currentPlace.address
+            val schedule = "Время работы: ${currentPlace.schedule}"
+            tvSchedule.text = schedule
+        }
     }
 }
