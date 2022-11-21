@@ -6,21 +6,25 @@ import androidx.lifecycle.viewModelScope
 import com.bignerdranch.android.permtourism.REPO
 import com.bignerdranch.android.permtourism.db.DataBase
 import com.bignerdranch.android.permtourism.db.Repository
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import com.bignerdranch.android.permtourism.model.User
+import kotlinx.coroutines.*
+import kotlin.math.log
 
 class LoginViewModel(application: Application): AndroidViewModel(application) {
 
     var context = application
+    var user: User? = null
+    var userPass: String? = null
 
     fun initDataBase() {
-        val db = DataBase.getInstance(context). getDao()
+        val db = DataBase.getInstance(context).getDao()
         REPO = Repository(db)
     }
 
-    fun getUser(name: String) {
+    fun getUser(login: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            REPO.getUser(name)
+            user = REPO.getUser(login)
+            userPass = user?.pass
         }
     }
 }

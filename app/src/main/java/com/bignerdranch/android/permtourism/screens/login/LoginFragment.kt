@@ -10,11 +10,10 @@ import androidx.lifecycle.ViewModelProvider
 import com.bignerdranch.android.permtourism.APP
 import com.bignerdranch.android.permtourism.R
 import com.bignerdranch.android.permtourism.databinding.FragmentLoginBinding
-import com.bignerdranch.android.permtourism.model.User
 
 class LoginFragment : Fragment() {
 
-    lateinit var binding: FragmentLoginBinding
+    private lateinit var binding: FragmentLoginBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,10 +32,10 @@ class LoginFragment : Fragment() {
         val viewModel = ViewModelProvider(this)[LoginViewModel::class.java]
         viewModel.initDataBase()
         binding.btnSignIn.setOnClickListener {
-            val user = viewModel.getUser(binding.etLogin.text.toString())
-            if (user != null) {
+            viewModel.getUser(binding.etLogin.text.toString())
+            if (viewModel.user != null && viewModel.userPass == binding.etPass.text.toString()) {
                 APP.navController.navigate(R.id.action_loginFragment_to_listFragment)
-            } else Toast.makeText(viewModel.getApplication(),"error", Toast.LENGTH_SHORT).show()
+            } else Toast.makeText(viewModel.getApplication(),"unknown user", Toast.LENGTH_SHORT).show()
         }
         binding.tvReg.setOnClickListener {
             APP.navController.navigate(R.id.action_loginFragment_to_regFragment)

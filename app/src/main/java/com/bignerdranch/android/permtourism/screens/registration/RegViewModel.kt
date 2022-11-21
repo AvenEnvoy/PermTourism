@@ -10,10 +10,17 @@ import kotlinx.coroutines.launch
 class RegViewModel(application: Application): AndroidViewModel(application) {
 
     var context = application
+    var user: User? = null
 
     fun addUser(user: User) {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(Dispatchers.Main) {
             REPO.addUser(user)
+        }
+    }
+
+    fun getUser(login: String){
+        viewModelScope.launch(Dispatchers.Main) {
+            user = REPO.getUser(login)
         }
     }
 }
