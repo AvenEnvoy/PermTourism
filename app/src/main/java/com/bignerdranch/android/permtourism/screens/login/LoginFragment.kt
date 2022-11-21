@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.bignerdranch.android.permtourism.APP
@@ -32,10 +31,7 @@ class LoginFragment : Fragment() {
         val viewModel = ViewModelProvider(this)[LoginViewModel::class.java]
         viewModel.initDataBase()
         binding.btnSignIn.setOnClickListener {
-            viewModel.getUser(binding.etLogin.text.toString())
-            if (viewModel.user != null && viewModel.userPass == binding.etPass.text.toString()) {
-                APP.navController.navigate(R.id.action_loginFragment_to_listFragment)
-            } else Toast.makeText(viewModel.getApplication(),"unknown user", Toast.LENGTH_SHORT).show()
+            viewModel.getUser(binding.etLogin.text.toString(), binding.etPass.text.toString())
         }
         binding.tvReg.setOnClickListener {
             APP.navController.navigate(R.id.action_loginFragment_to_regFragment)
