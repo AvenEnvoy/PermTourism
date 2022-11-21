@@ -5,10 +5,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.bignerdranch.android.permtourism.databinding.ActivityMainBinding
+import com.bignerdranch.android.permtourism.model.SharedPref
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
     lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,5 +18,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         APP = this
         navController = Navigation.findNavController(this, R.id.nav_fragment)
+        val userName = SharedPref.getName(this)
+        if (userName != "") {
+            APP.navController.navigate(R.id.listFragment)
+        }
     }
 }
