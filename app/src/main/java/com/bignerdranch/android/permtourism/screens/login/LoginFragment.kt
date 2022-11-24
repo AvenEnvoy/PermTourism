@@ -25,8 +25,7 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val appName = getString(R.string.app_name)
-        (activity as AppCompatActivity).supportActionBar?.title = appName
+        (activity as AppCompatActivity).supportActionBar?.setTitle(R.string.app_name)
         init()
     }
 

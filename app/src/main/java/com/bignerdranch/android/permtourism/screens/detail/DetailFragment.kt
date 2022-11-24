@@ -10,6 +10,7 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.bignerdranch.android.permtourism.APP
 import com.bignerdranch.android.permtourism.R
 import com.bignerdranch.android.permtourism.databinding.FragmentDetailBinding
 import com.bignerdranch.android.permtourism.model.Place
@@ -38,8 +39,6 @@ class DetailFragment : Fragment() {
         val viewModel = ViewModelProvider(this) [DetailViewModel::class.java]
         val string = getString(R.string.go)
         (activity as AppCompatActivity).supportActionBar?.title = "$string ${viewModel.userName}?"
-        val lati = currentPlace.latitude
-        val long = currentPlace.longitude
         binding.apply {
             val bmp = BitmapFactory.decodeByteArray(currentPlace.image, 0, currentPlace.image.size)
             ivPlace.setImageBitmap(bmp)
@@ -48,6 +47,13 @@ class DetailFragment : Fragment() {
             tvAddress.text = currentPlace.address
             val schedule = "Время работы: ${currentPlace.schedule}"
             tvSchedule.text = schedule
+            binding.fab.setOnClickListener() {
+                val bundle = Bundle()
+                bundle.putDouble("lati", currentPlace.latitude)
+                bundle.putDouble("long", currentPlace.longitude)
+                bundle.putString("name", currentPlace.title)
+                APP.navController.navigate(R.id.action_detailFragment_to_mapFragment, bundle)
+            }
         }
     }
 }
