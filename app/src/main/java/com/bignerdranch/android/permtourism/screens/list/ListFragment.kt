@@ -1,11 +1,12 @@
 package com.bignerdranch.android.permtourism.screens.list
 
 import android.os.Bundle
+import android.view.*
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.Toast
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,15 +15,14 @@ import com.bignerdranch.android.permtourism.APP
 import com.bignerdranch.android.permtourism.R
 import com.bignerdranch.android.permtourism.adapter.PlaceAdapter
 import com.bignerdranch.android.permtourism.databinding.FragmentListBinding
-import com.bignerdranch.android.permtourism.databinding.FragmentLoginBinding
 import com.bignerdranch.android.permtourism.model.Place
-import com.bignerdranch.android.permtourism.screens.login.LoginViewModel
+import com.bignerdranch.android.permtourism.model.SharedPref
 
 class ListFragment : Fragment() {
 
-    lateinit var binding: FragmentListBinding
+    private lateinit var binding: FragmentListBinding
     lateinit var rv: RecyclerView
-    lateinit var adapter: PlaceAdapter
+    private lateinit var adapter: PlaceAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,6 +39,8 @@ class ListFragment : Fragment() {
 
     private fun init() {
         val viewModel = ViewModelProvider(this)[ListViewModel::class.java]
+        val string = getString(R.string.welcome)
+        (activity as AppCompatActivity).supportActionBar?.title = "$string ${viewModel.userName}!"
         viewModel.initDataBase()
         rv = binding.rvPlaces
         rv.layoutManager = LinearLayoutManager(viewModel.context,LinearLayoutManager.VERTICAL, false)
@@ -47,6 +49,22 @@ class ListFragment : Fragment() {
         viewModel.getAllPlaces().observe(viewLifecycleOwner, Observer {
             adapter.setList(it.asReversed())
         })
+
+        val menuHost: MenuHost = requireActivity()
+        menuHost.addMenuProvider(object : MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                menuInflater.inflate(R.menu.menu, menu)
+            }
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                return when (menuItem.itemId) {
+                    R.id.exit -> {
+                        APP.navController.navigate(R.id.action_listFragment_to_loginFragment)
+                        SharedPref.setName(viewModel.context, "")
+                        true
+                    } else -> false
+                }
+            }
+        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
     }
 
     companion object{

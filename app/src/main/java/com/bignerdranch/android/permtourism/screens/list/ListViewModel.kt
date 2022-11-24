@@ -7,10 +7,13 @@ import com.bignerdranch.android.permtourism.REPO
 import com.bignerdranch.android.permtourism.db.DataBase
 import com.bignerdranch.android.permtourism.db.Repository
 import com.bignerdranch.android.permtourism.model.Place
+import com.bignerdranch.android.permtourism.model.SharedPref
 
 class ListViewModel(application: Application): AndroidViewModel(application) {
 
     var context = application
+
+    val userName = SharedPref.getName(context)
 
     fun initDataBase() {
         val db = DataBase.getInstance(context). getDao()

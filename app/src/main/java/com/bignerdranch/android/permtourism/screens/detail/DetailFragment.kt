@@ -1,14 +1,15 @@
 package com.bignerdranch.android.permtourism.screens.detail
 
 import android.graphics.BitmapFactory
-import android.os.Binder
 import android.os.Build
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.bignerdranch.android.permtourism.R
 import com.bignerdranch.android.permtourism.databinding.FragmentDetailBinding
 import com.bignerdranch.android.permtourism.model.Place
@@ -34,6 +35,9 @@ class DetailFragment : Fragment() {
     }
 
     private fun init() {
+        val viewModel = ViewModelProvider(this) [DetailViewModel::class.java]
+        val string = getString(R.string.go)
+        (activity as AppCompatActivity).supportActionBar?.title = "$string ${viewModel.userName}?"
         val lati = currentPlace.latitude
         val long = currentPlace.longitude
         binding.apply {
