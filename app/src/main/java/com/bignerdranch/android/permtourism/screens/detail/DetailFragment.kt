@@ -49,8 +49,8 @@ class DetailFragment : Fragment() {
             tvSchedule.text = schedule
             binding.fab.setOnClickListener() {
                 val bundle = Bundle()
-                bundle.putDouble("lati", currentPlace.latitude)
-                bundle.putDouble("long", currentPlace.longitude)
+                bundle.putDouble("lat", currentPlace.latitude)
+                bundle.putDouble("lng", currentPlace.longitude)
                 bundle.putString("name", currentPlace.title)
                 APP.navController.navigate(R.id.action_detailFragment_to_mapFragment, bundle)
             }
