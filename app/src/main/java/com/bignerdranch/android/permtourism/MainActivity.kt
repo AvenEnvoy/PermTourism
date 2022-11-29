@@ -1,11 +1,7 @@
 package com.bignerdranch.android.permtourism
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.MenuProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.bignerdranch.android.permtourism.databinding.ActivityMainBinding
