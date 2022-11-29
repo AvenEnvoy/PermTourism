@@ -22,7 +22,7 @@ class MapFragment : Fragment() {
         val name = arguments?.getString("name") as String
         val destination = LatLng(lat, lng)
         googleMap.addMarker(MarkerOptions().position(destination).title(name))
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(destination, 14F))
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(destination, 12F))
     }
     private lateinit var binding: FragmentMapBinding
 
